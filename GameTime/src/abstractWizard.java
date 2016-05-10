@@ -22,7 +22,7 @@ public class abstractWizard{
 	
 	//Stats
 	private int HP;
-	
+	private int maxHP;
 	private long currentSpellCooldown;
 	private int Intellect;
 	private int Attunement;
@@ -68,6 +68,7 @@ public class abstractWizard{
 	}
 	public void setHP(int hP) {
 		HP = hP;
+		maxHP = hP;
 	}
 	public void setIntellect(int intellect) {
 		Intellect = intellect;
@@ -147,7 +148,11 @@ public class abstractWizard{
 				
 				int healingAmount = chosenSpell.getHealer()*this.getIntellect();
 				this.HP += healingAmount;
-				System.out.println(this.getName() + "healed for " + healingAmount + " health" );
+				if(this.HP > this.maxHP)
+				{
+					this.HP = this.maxHP;
+				}
+				System.out.println(this.getName() + " healed for " + healingAmount + " health" );
 			}
 			
 		}
