@@ -155,11 +155,10 @@ public class abstractWizard{
 				{
 					healingAmount = this.maxHP-this.HP;
 					this.HP = this.maxHP;
-					
 					 
 				}
 				else{
-					this.HP += healingAmount;
+					this.setHP(this.HP + healingAmount);
 				}
 					
 				System.out.println(this.getName() + " healed for " + healingAmount + " health" );
@@ -188,10 +187,10 @@ public class abstractWizard{
 		
 		else{
 			//calculate damage based on wizards intellect and spell power
-			int damage = (int)(this.getIntellect()*.1) * chosenSpell.getPower();
+			int damage = (int)(this.getIntellect()*.01) * chosenSpell.getPower();
 			System.out.println(chosenSpell.getName() + " dealt "+ damage + " damage");
 			//current way of modifying opponents health
-			w2.HP -= damage;
+			w2.setHP(w2.HP- damage);
 			System.out.println(w2.getName() + " has " +w2.getHP() + " health left");
 		 }
 	}

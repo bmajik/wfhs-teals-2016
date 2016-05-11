@@ -15,12 +15,12 @@ public class WizardRunner {
 			//spellBook.add(heal);
 			//spellBook.add(ward);
 			abstractWizard Hairy = new abstractWizard("Hairy",250,250,500, spellBook);
-			abstractWizard Rob = new abstractWizard("Rob", 250,700,50, spellBook);
+			abstractWizard Rob = new abstractWizard("Rob", 250,250,500, spellBook);
 			
 			
 			
 			BattleSystem.WizardBattleSystem(Hairy, Rob);
-			UserInterface testerama = new UserInterface(Hairy, Rob);
+			
 			
 			
 		

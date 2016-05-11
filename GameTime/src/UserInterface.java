@@ -29,16 +29,27 @@ public class UserInterface {
 	private JProgressBar leftHealth = new JProgressBar();
 	private JProgressBar rightHealth = new RightToLeftProgressBar();
 	private GridBagConstraints layoutManager = new GridBagConstraints();
-	
-	
-	public void updateLeftHealth(int currentHealthPercent){
-		
+	private JLabel Health = new JLabel();
+	private JLabel Health2 = new JLabel();
+	public void updateLeftHealth(int currentHealthPercent){		
 		leftHealth.setValue(currentHealthPercent);
+		leftHealth.revalidate();
+		leftHealth.repaint();
+		
 		
 	}
 	public void updateRightHealth(int currentHealthPercent){
 		rightHealth.setValue(currentHealthPercent);
+		rightHealth.revalidate();
+		rightHealth.repaint();
 		
+		
+	}
+	public void updateLeftHealthText(int health){
+		Health.setText("Health:" + health);
+	}
+	public void updateRightHealthText(int health){
+		Health2.setText("Health:" + health);
 	}
 	private void healthBarContainerLeft()
 	{		 		 	
@@ -50,7 +61,7 @@ public class UserInterface {
 		
 		rightHealth.setBackground(Color.blue);
 		rightHealth.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		rightHealth.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		
 		
 	}
 	private JPanel bottomHalf(){
@@ -62,14 +73,24 @@ public class UserInterface {
 	}
 public UserInterface(abstractWizard w1, abstractWizard w2)
 {
+	
+	
+	rightHealth.setStringPainted(true);
+	rightHealth.setForeground(Color.green);
+	
+	leftHealth.setStringPainted(true);
+	leftHealth.setForeground(Color.green);
+	
 	rightHealth.setMinimum(0);
 	leftHealth.setMinimum(0);
-	JLabel Health = new JLabel("Health:" + w1.getHP());
-	JLabel Health2 = new JLabel("Health:"+ w2.getHP());
+	Health.setText("Health:"+ w1.getHP());
+	Health2.setText("Health:"+ w2.getHP());
 	Container pane = new Container();
 	
 	leftHealth.setMaximum(w1.getHP());
-	rightHealth.setMaximum(w2.getHP());
+	leftHealth.setValue(w1.getHP());
+	rightHealth.setMaximum(w2.getHP());	
+	rightHealth.setValue(w2.getHP());
 	
 	pane.setLayout(new GridBagLayout());
 	
@@ -122,8 +143,7 @@ public UserInterface(abstractWizard w1, abstractWizard w2)
 	masterFrame.setLayout((new BorderLayout()));
 	masterFrame.setSize(1000,700);	
 	masterFrame.add(pane);
-	leftHealth.setValue(50);
-	rightHealth.setValue(20);
+	
 	masterFrame.setVisible(true);
 	
 	masterFrame.getContentPane().setBackground(Color.yellow);

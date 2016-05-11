@@ -9,21 +9,32 @@ public class BattleSystem {
 	public static ArrayList<Spell> spellBook = new ArrayList<Spell>();
 	public static void WizardBattleSystem(abstractWizard w1, abstractWizard w2)
 	{
+		UserInterface testerama = new UserInterface(w1, w2);
 		timeTracker = 0;
 		//need way of starting fight fairly as neither wizard is on cooldown yet
 		double start = Math.random(); 
 		if (start <.5 ){
 			//if random number is in bottom half of what it could be wizard 1 goes first
 			w1.castSpell(w2);
+			testerama.updateRightHealth(w2.getHP());		
+			testerama.updateRightHealthText(w2.getHP());
 		}
 		else{
 			//if not then wizard 2 goes first
 			w2.castSpell(w1);
+			testerama.updateLeftHealth(w1.getHP());
+			testerama.updateLeftHealthText(w1.getHP());
 		}
 		//Start loop here, since both wizards are now on cooldown
 		//Check health repeatedly 
 		while (w1.getHP() > 0 && w2.getHP() > 0)
 		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			 
+				System.out.println("Problem, we have a Houston");
+			}
 			//track time at beginning for cooldown purposes
 			long timeAtStart = System.currentTimeMillis();
 			//lower the cooldowns by time elapsed from previous loop 
@@ -32,42 +43,55 @@ public class BattleSystem {
 				System.out.println("five");
 			}
 			w1.setCurrentSpellCooldown(w1.getCurrentSpellCooldown() - timeTracker/(long)1000);
-			//divide by 1000 to convert from milliseconds to actual seconds
+			
+			
+			
 			w2.setCurrentSpellCooldown(w2.getCurrentSpellCooldown() - timeTracker/(long)1000);
+			
 			//check if wizard 1 can cast a spell
-			if (w1.getCurrentSpellCooldown() <= 0){
+		//if (w1.getCurrentSpellCooldown() <= 0){
 				System.out.println("MWAHAHAHAHAHA");
 				w1.castSpell(w2);
-			}
+				testerama.updateRightHealth(w2.getHP());
+				testerama.updateRightHealthText(w1.getHP());
+				
+				
+			//}
 			//check if wizard 2 can cast a spell
-			else if(w2.getCurrentSpellCooldown()<= 0 )
-			{
-				System.out.println("UGH");
-				w2.castSpell(w1);
-			}
-			
-				//create a pause in the code to prevent system usage from executing
-				//an infinite amount of times while it waits on cooldown
-				//since it will check repeatedly if a wizard can cast a spell
+			//else if(w2.getCurrentSpellCooldown()<= 0 )
+			//{
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 				 
 					System.out.println("Problem, we have a Houston");
 				}
+				
+				System.out.println("UGH");
+				w2.castSpell(w1);
+				testerama.updateLeftHealth(w1.getHP());
+				testerama.updateLeftHealthText(w1.getHP());
+			//}
+			
+				//create a pause in the code to prevent system usage from executing
+				//an infinite amount of times while it waits on cooldown
+				//since it will check repeatedly if a wizard can cast a spell
+			
+				
+			
 			
 			//track time at end for cooldown purposes
 			long timeAtFinish = System.currentTimeMillis();
 			//figure out elapsed loop time
 			timeTracker = timeAtFinish - timeAtStart;
+		
 			
 			
 			
 			
 			
 			
-			
-			System.out.println("JOSH IS BAD");
+		
 			
 			//cooldown implementation
 		}
