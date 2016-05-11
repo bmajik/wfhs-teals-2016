@@ -108,6 +108,7 @@ public class abstractWizard{
 		}
 		//set initial values
 			this.HP = HP;
+			this.maxHP = HP;
 			this.Intellect = Intellect;
 			this.Attunement = Attunement;
 			this.castAbility = true;
@@ -120,6 +121,8 @@ public class abstractWizard{
 		{
 			//they can't cast a spell if they are disarmed
 			System.out.println(this.getName() + " is disarmed, they cannot cast a spell");
+			//TEMPORARY, ONLY TO TEST WITHOUT FIXING DISARM
+			this.castAbility = true;
 			return;
 		}
 		
@@ -129,7 +132,7 @@ public class abstractWizard{
 		Spell chosenSpell = spellBook.get(rnd.nextInt(spellBook.size()));
 		
 		//set value of current spells cooldown for use in BattleSystem
-		this.currentSpellCooldown = chosenSpell.getCoolDown();
+		this.setCurrentSpellCooldown(chosenSpell.getCoolDown()); 
 		System.out.println(this.getName() +" casts "+ chosenSpell.getName());
 		//check if spell is targeting self
 		if (chosenSpell.getSelfTargeting()){
@@ -147,17 +150,23 @@ public class abstractWizard{
 				//regenerates HP based on Spell and Intellect
 				
 				int healingAmount = chosenSpell.getHealer()*this.getIntellect();
-				this.HP += healingAmount;
-				if(this.HP > this.maxHP)
+								
+				if(this.HP + healingAmount > this.maxHP)
 				{
+					healingAmount = this.maxHP-this.HP;
 					this.HP = this.maxHP;
+					 
 				}
+				else{
+					this.HP += healingAmount;
+				}
+					
 				System.out.println(this.getName() + " healed for " + healingAmount + " health" );
 			}
 			
 		}
 		else if (w2.getWarded()){
-			System.out.println(chosenSpell.getName() + " was blocked");
+			System.out.println(chosenSpell.getName() + " was blocked");			
 			this.setWarded(false);
 		}
 		//This code exists under the assumption that disarm does nothing but disarm
