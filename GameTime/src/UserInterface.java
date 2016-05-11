@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,27 +27,31 @@ public class UserInterface {
 	private JPanel wizard2 = new JPanel();
 	private final Font masterFont = new Font("Courier", Font.PLAIN, 12);
 	private JProgressBar leftHealth = new JProgressBar();
-	private JProgressBar rightHealth = new JProgressBar();
+	private JProgressBar rightHealth = new RightToLeftProgressBar();
 	private GridBagConstraints layoutManager = new GridBagConstraints();
 	
 	
-	
-	private JPanel healthBarContainerLeft()
-	{
-		 JPanel health1 = new JPanel();
-		 
+	public void updateLeftHealth(int currentHealthPercent){
 		
-		health1.setBackground(Color.red);
-		health1.setAlignmentX(Component.LEFT_ALIGNMENT);
-		return health1;
+		leftHealth.setValue(currentHealthPercent);
+		
 	}
-	private JPanel healthBarContainerRight(){
-		JPanel health2 = new JPanel();
+	public void updateRightHealth(int currentHealthPercent){
+		rightHealth.setValue(currentHealthPercent);
 		
+	}
+	private void healthBarContainerLeft()
+	{		 		 	
+		leftHealth.setBackground(Color.red);
+		leftHealth.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
-		health2.setBackground(Color.blue);
-		health2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		return health2;
+	}
+	private void healthBarContainerRight(){
+		
+		rightHealth.setBackground(Color.blue);
+		rightHealth.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		rightHealth.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		
 	}
 	private JPanel bottomHalf(){
 		JPanel bottomHalf = new JPanel();
@@ -57,9 +62,14 @@ public class UserInterface {
 	}
 public UserInterface(abstractWizard w1, abstractWizard w2)
 {
+	rightHealth.setMinimum(0);
+	leftHealth.setMinimum(0);
 	JLabel Health = new JLabel("Health:" + w1.getHP());
 	JLabel Health2 = new JLabel("Health:"+ w2.getHP());
 	Container pane = new Container();
+	
+	leftHealth.setMaximum(w1.getHP());
+	rightHealth.setMaximum(w2.getHP());
 	
 	pane.setLayout(new GridBagLayout());
 	
@@ -77,11 +87,11 @@ public UserInterface(abstractWizard w1, abstractWizard w2)
 	layoutManager.gridy++;
 	layoutManager.gridx--;
 	layoutManager.insets = new Insets(0,0,0,10);
-	pane.add(healthBarContainerLeft(), layoutManager);
+	pane.add(leftHealth, layoutManager);
 	
 	layoutManager.gridx++;
 	layoutManager.insets = new Insets(0,10,0,0);
-	pane.add(healthBarContainerRight(), layoutManager);
+	pane.add(rightHealth, layoutManager);
 	
 	wizard1.add(leftWizard(w1.getName()));
 	wizard2.add(rightWizard(w2.getName()));
@@ -97,6 +107,7 @@ public UserInterface(abstractWizard w1, abstractWizard w2)
 	
 	
 	layoutManager.gridx++;
+	layoutManager.weightx = .665;
 	layoutManager.anchor = GridBagConstraints.BASELINE_TRAILING;
 	pane.add(wizard2, layoutManager);
 	
@@ -111,6 +122,8 @@ public UserInterface(abstractWizard w1, abstractWizard w2)
 	masterFrame.setLayout((new BorderLayout()));
 	masterFrame.setSize(1000,700);	
 	masterFrame.add(pane);
+	leftHealth.setValue(50);
+	rightHealth.setValue(20);
 	masterFrame.setVisible(true);
 	
 	masterFrame.getContentPane().setBackground(Color.yellow);

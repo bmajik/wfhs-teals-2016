@@ -155,6 +155,7 @@ public class abstractWizard{
 				{
 					healingAmount = this.maxHP-this.HP;
 					this.HP = this.maxHP;
+					
 					 
 				}
 				else{
