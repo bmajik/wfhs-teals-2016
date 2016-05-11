@@ -1,0 +1,36 @@
+//Ideas For implimenting spells/damage
+
+public static void poison(abstractWizard x) {
+  if (w1 = x){
+	w1.CanCast = false;
+	for (int z = 0; z < 100; z++) {
+		w2.HP --;
+	}
+	w1.CanCast = true;
+  }
+  if (w2 = x) {
+	w2.CanCast = false;
+	for (int z = 0; z < 100; z++) {
+		w1.HP --;
+	}
+	w1.CanCast = true;
+  }
+}
+
+//OR
+
+public static void poison2() {
+  boolean poison = false;
+  long StartTimeP = 0;
+  long EndTimeP = System.nanoTime();
+  long duration = 100000;
+    
+    while(EndTimeP - StartTimeP != duration) {
+	poison = true;
+	//Damage a player here
+	w1.HP --;
+	EndTimeP = System.nanoTime();
+    }
+    poison = false;
+}
+
