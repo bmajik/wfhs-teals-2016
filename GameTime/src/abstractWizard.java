@@ -68,7 +68,9 @@ public class abstractWizard{
 	}
 	public void setHP(int hP) {
 		HP = hP;
-		maxHP = hP;
+	}
+	public void setMaxHP(int MaxHP){
+		maxHP = MaxHP;
 	}
 	public void setIntellect(int intellect) {
 		Intellect = intellect;
