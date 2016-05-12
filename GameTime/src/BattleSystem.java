@@ -16,14 +16,16 @@ public class BattleSystem {
 		if (start <.5 ){
 			//if random number is in bottom half of what it could be wizard 1 goes first
 			w1.castSpell(w2);
-			testerama.updateRightHealth(w2.getHP());		
-			testerama.updateRightHealthText(w2.getHP());
+			testerama.update();
+			//			testerama.updateRightHealth(w2.getHP());		
+			//			testerama.updateRightHealthText(w2.getHP());
 		}
 		else{
 			//if not then wizard 2 goes first
 			w2.castSpell(w1);
-			testerama.updateLeftHealth(w1.getHP());
-			testerama.updateLeftHealthText(w1.getHP());
+			testerama.update();
+//			testerama.updateLeftHealth(w1.getHP());
+//			testerama.updateLeftHealthText(w1.getHP());
 		}
 		//Start loop here, since both wizards are now on cooldown
 		//Check health repeatedly 
@@ -52,8 +54,9 @@ public class BattleSystem {
 		//if (w1.getCurrentSpellCooldown() <= 0){
 				System.out.println("MWAHAHAHAHAHA");
 				w1.castSpell(w2);
-				testerama.updateRightHealth(w2.getHP());
-				testerama.updateRightHealthText(w1.getHP());
+				testerama.update();
+//				testerama.updateRightHealth(w2.getHP());
+//				testerama.updateRightHealthText(w1.getHP());
 				
 				
 			//}
@@ -69,30 +72,20 @@ public class BattleSystem {
 				
 				System.out.println("UGH");
 				w2.castSpell(w1);
-				testerama.updateLeftHealth(w1.getHP());
-				testerama.updateLeftHealthText(w1.getHP());
+				testerama.update();
+				//				testerama.updateLeftHealth(w1.getHP());
+//				testerama.updateLeftHealthText(w1.getHP());
 			//}
 			
 				//create a pause in the code to prevent system usage from executing
 				//an infinite amount of times while it waits on cooldown
 				//since it will check repeatedly if a wizard can cast a spell
 			
-				
-			
-			
 			//track time at end for cooldown purposes
 			long timeAtFinish = System.currentTimeMillis();
 			//figure out elapsed loop time
 			timeTracker = timeAtFinish - timeAtStart;
 		
-			
-			
-			
-			
-			
-			
-		
-			
 			//cooldown implementation
 		}
 		//this point will only be reached upon a wizard death
