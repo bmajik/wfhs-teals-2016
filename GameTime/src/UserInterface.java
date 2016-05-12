@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -33,14 +32,20 @@ public class UserInterface {
 	private JProgressBar leftHealth = new JProgressBar();
 	private JProgressBar rightHealth = new RightToLeftProgressBar();
 	private GridBagConstraints layoutManager = new GridBagConstraints();
-	private JLabel Health = new JLabel();
-	private JLabel Health2 = new JLabel();
-		
+	private JLabel leftHealthText = new JLabel();
+	private JLabel rightHealthText = new JLabel();
+	private JLabel leftIntellectText = new JLabel();
+	private JLabel rightIntellectText = new JLabel();
+	private JLabel leftAttunementText = new JLabel();
+	private JLabel rightAttunementText = new JLabel();
+	
+	private JTextArea BottomHalf = new JTextArea();
 	public void update() {
 		updateLeftHealth(leftWizard.getHP());
 		updateLeftHealthText(leftWizard.getHP());
 		updateRightHealth(rightWizard.getHP());
 		updateRightHealthText(rightWizard.getHP());
+		
 	}
 	
 	public void updateLeftHealth(int currentHealthPercent){		
@@ -56,11 +61,11 @@ public class UserInterface {
 	}
 
 	public void updateLeftHealthText(int health){
-		Health.setText("Health:" + health);
+		leftHealthText.setText("Health:" + health);
 	}
 
 	public void updateRightHealthText(int health){
-		Health2.setText("Health:" + health);
+		rightHealthText.setText("Health:" + health);
 	}
 	private void healthBarContainerLeft()
 	{		 		 	
@@ -73,16 +78,11 @@ public class UserInterface {
 		rightHealth.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	}
 
-	private JPanel bottomHalf(){
-		JPanel bottomHalf = new JPanel();
-		bottomHalf.setBackground(Color.white);
-		
-		bottomHalf.setBorder(BorderFactory.createLineBorder(Color.black));
-		return bottomHalf;
-	}
-
 	public UserInterface(abstractWizard w1, abstractWizard w2)
 	{
+		BottomHalf.setBackground(Color.white);		
+		BottomHalf.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		leftWizard = w1;
 		rightWizard = w2;
 		
@@ -95,8 +95,12 @@ public class UserInterface {
 		rightHealth.setMinimum(0);
 		leftHealth.setMinimum(0);
 	
-		Health.setText("Health:"+ leftWizard.getHP());
-		Health2.setText("Health:"+ rightWizard.getHP());
+		leftHealthText.setText("Health:"+ leftWizard.getHP());
+		rightHealthText.setText("Health:"+ rightWizard.getHP());
+		leftIntellectText.setText("Intellect" + leftWizard.getIntellect());
+		rightIntellectText.setText("Intellect" + leftWizard.getIntellect());
+		leftAttunementText.setText("Attunement" + leftWizard.getAttunement());
+		rightAttunementText.setText("Attunement" + leftWizard.getAttunement());
 		Container pane = new Container();
 		
 		leftHealth.setMaximum(leftWizard.getHP());
@@ -111,15 +115,32 @@ public class UserInterface {
 		layoutManager.gridy = 0;
 		layoutManager.weightx = .5;
 		layoutManager.weighty = .5;		
-		pane.add(Health, layoutManager);
+		pane.add(leftHealthText, layoutManager);
 		
 		layoutManager.gridx++;
-		Health2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		pane.add(Health2, layoutManager);
+		pane.add(leftIntellectText, layoutManager);
+		
+		layoutManager.gridx++;
+		pane.add(leftAttunementText, layoutManager);
+		
+		
+		
+		
+		layoutManager.gridx++;
+		rightHealthText.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		pane.add(rightHealthText, layoutManager);
+		
+		layoutManager.gridx++;
+		pane.add(rightIntellectText, layoutManager);
+		
+		layoutManager.gridx++;
+		pane.add(rightAttunementText, layoutManager);
+		
 		
 		layoutManager.gridy++;
 		layoutManager.gridx--;
 		layoutManager.insets = new Insets(0,0,0,10);
+		layoutManager.gridwidth = 2;
 		pane.add(leftHealth, layoutManager);
 		
 		layoutManager.gridx++;
@@ -147,7 +168,7 @@ public class UserInterface {
 		layoutManager.gridy++;
 		layoutManager.gridx--;
 		layoutManager.gridwidth = 2;	
-		pane.add(bottomHalf(), layoutManager);
+		pane.add(BottomHalf, layoutManager);
 		
 		
 		masterFrame = new JFrame();
