@@ -52,7 +52,6 @@ public class BattleSystem {
 			
 			//check if wizard 1 can cast a spell
 		//if (w1.getCurrentSpellCooldown() <= 0){
-				System.out.println("MWAHAHAHAHAHA");
 				w1.castSpell(w2);
 				testerama.update();
 //				testerama.updateRightHealth(w2.getHP());
@@ -70,7 +69,6 @@ public class BattleSystem {
 					System.out.println("Problem, we have a Houston");
 				}
 				
-				System.out.println("UGH");
 				w2.castSpell(w1);
 				testerama.update();
 				//				testerama.updateLeftHealth(w1.getHP());

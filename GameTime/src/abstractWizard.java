@@ -103,9 +103,10 @@ public class abstractWizard{
 			System.out.println("Check Dem Spells");
 			return;
 		}
-		//make sure that they pass in valid stats
-		if (maxStatPoints > HP+Intellect+Attunement){
-			System.out.println("Check Dat Math");
+		if (maxStatPoints < HP + Intellect + Attunement){
+			System.out.println("A Wizards Stats don't equal 1000 or less");
+			System.out.println("#CheatersNeverWin #CaughtYou #GetRektKid -SR");
+			System.exit(1);
 			return;
 		}
 		//set initial values
@@ -114,7 +115,8 @@ public class abstractWizard{
 			this.Intellect = Intellect;
 			this.Attunement = Attunement;
 			this.castAbility = true;
-		
+			//make sure that they pass in valid stats
+			
 	}
 	public void castSpell(abstractWizard w2){
 		// NEED TO IMPLEMENT check for disarmed or other inhibitors

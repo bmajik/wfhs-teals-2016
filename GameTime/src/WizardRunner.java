@@ -43,8 +43,8 @@ public class WizardRunner {
    //real spell list
    //spellBook.add();
    
-   abstractWizard Hairy = new abstractWizard("Hairy",2500,250,500, spellBook);
-   abstractWizard Rob = new abstractWizard("Rob", 2500,700,50, spellBook);
+   abstractWizard Hairy = new abstractWizard("Hairy",250,250,500, spellBook);
+   abstractWizard Rob = new abstractWizard("Rob", 250,700,50, spellBook);
    
    BattleSystem.WizardBattleSystem(Hairy, Rob);
    
