@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -47,7 +48,6 @@ public class UserInterface {
 		updateRightHealthText(rightWizard.getHP());
 		
 	}
-	
 	public void updateLeftHealth(int currentHealthPercent){		
 		leftHealth.setValue(currentHealthPercent);
 		leftHealth.revalidate();
@@ -77,7 +77,36 @@ public class UserInterface {
 		rightHealth.setBackground(Color.blue);
 		rightHealth.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	}
-
+	ArrayList<String> StoringInfo = new ArrayList<String>();
+	int counterX = 0;
+	
+	// Moving Text from the console and putting it into the bottom box
+	// Allows the battling to be read
+	public JTextArea ActionBox(String temp){
+		
+		// Because the Amount of strings we want to pass in keeps going up,
+		// this was the easiest way i could implement an ever changing variable
+		StoringInfo.add(temp);
+		
+		while (counterX < StoringInfo.size()){
+			BottomHalf.append(StoringInfo.get(counterX));
+			if (StoringInfo.get(counterX) != null){
+			BottomHalf.append("\n");
+			}
+			counterX++;
+		}
+		return BottomHalf;	
+	}
+	public JTextArea AnnounceWinner (abstractWizard x, abstractWizard y){
+		if (x.getHP() < 1){
+			BottomHalf.append("Wizard " + y.getName() + " is the Winner of this battle!");
+		}
+		if (y.getHP() < 1){
+			BottomHalf.append("Wizard " + x.getName() + " is the Winner of this battle!");
+		}
+		return BottomHalf;
+		
+	}
 	public UserInterface(abstractWizard w1, abstractWizard w2)
 	{
 		BottomHalf.setBackground(Color.white);		
@@ -152,6 +181,7 @@ public class UserInterface {
 		wizard1.setBackground(Color.white);
 		wizard2.setBackground(Color.white);
 		
+		
 		layoutManager.insets = new Insets(0,0,0,0);	
 		layoutManager.fill = GridBagConstraints.BOTH;
 		layoutManager.gridy++;
@@ -180,8 +210,8 @@ public class UserInterface {
 		masterFrame.setVisible(true);
 		
 		masterFrame.getContentPane().setBackground(Color.yellow);
+		
 	}
-
 	public JTextArea leftWizard(String name){
 		JTextArea wizard2 = new JTextArea();
 		wizard2.setFont(masterFont);

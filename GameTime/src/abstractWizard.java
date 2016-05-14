@@ -103,6 +103,8 @@ public class abstractWizard{
 			System.out.println("Check Dem Spells");
 			return;
 		}
+		// Checks for cheating on stat points when the wizard is created
+		// System.exit(1) -Terminates the rest of the program immediately
 		if (maxStatPoints < HP + Intellect + Attunement){
 			System.out.println("A Wizards Stats don't equal 1000 or less");
 			System.out.println("#CheatersNeverWin #CaughtYou #GetRektKid -SR");
@@ -118,7 +120,7 @@ public class abstractWizard{
 			//make sure that they pass in valid stats
 			
 	}
-	public void castSpell(abstractWizard w2){
+	public String castSpell(abstractWizard w2){
 		// NEED TO IMPLEMENT check for disarmed or other inhibitors
 		
 		if (!this.castAbility)
@@ -127,7 +129,7 @@ public class abstractWizard{
 			System.out.println(this.getName() + " is disarmed, they cannot cast a spell");
 			//TEMPORARY, ONLY TO TEST WITHOUT FIXING DISARM
 			this.castAbility = true;
-			return;
+			return this.getName() + " is disarmed, they cannot cast a spell";
 		}
 		
 		Random rnd = new Random();
@@ -135,7 +137,7 @@ public class abstractWizard{
 		//So this is temporary
 		Spell chosenSpell = spellBook.get(rnd.nextInt(spellBook.size()));
 		
-		//set value of current spells cooldown for use in BattleSystem
+		//set value of current spells cool down for use in BattleSystem
 		this.setCurrentSpellCooldown(chosenSpell.getCoolDown()); 
 		System.out.println(this.getName() +" casts "+ chosenSpell.getName());
 		//check if spell is targeting self
@@ -144,7 +146,7 @@ public class abstractWizard{
 			if (chosenSpell.getProtecter()){
 				System.out.println(this.getName() + " is now warded");
 				this.setWarded(true);
-				return;
+				return this.getName() +" casts "+ chosenSpell.getName() + "\n" + this.getName() + " is now warded";
 			}
 			//assuming that if it isn't a ward it heals the wizard 
 			//Will be changed if more self-targeting spells are implemented
@@ -166,12 +168,14 @@ public class abstractWizard{
 				}
 					
 				System.out.println(this.getName() + " healed for " + healingAmount + " health" );
+				return this.getName() +" casts "+ chosenSpell.getName() + "\n" + this.getName() + " healed for " + healingAmount + " health" ;
 			}
 			
 		}
 		else if (w2.getWarded()){
 			System.out.println(chosenSpell.getName() + " was blocked");			
 			this.setWarded(false);
+			return this.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " was blocked";
 		}
 		//This code exists under the assumption that disarm does nothing but disarm
 		else if (chosenSpell.getDisarm())
@@ -182,7 +186,7 @@ public class abstractWizard{
 				System.out.println(w2.getName()+ " was disarmed");
 				w2.setCastAbility(false);
 				this.currentEffects.add(disarm);
-			
+			return this.getName() +" casts "+ chosenSpell.getName() + "\n" + w2.getName()+ " was disarmed";
 			}
 						
 		
@@ -196,8 +200,9 @@ public class abstractWizard{
 			//current way of modifying opponents health
 			w2.setHP(w2.HP- damage);
 			System.out.println(w2.getName() + " has " +w2.getHP() + " health left");
-		 }
+		 
+		return this.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " dealt "+ damage + " damage" + "\n" + w2.getName() + " has " +w2.getHP() + " health left";
 	}
 	
-	
+	}
 }
