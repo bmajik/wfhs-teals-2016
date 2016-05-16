@@ -275,7 +275,26 @@ public class UserInterface {
 
 	public JTextArea rightWizard(String name){
 		JTextArea wizard1 = new JTextArea();
-		
+		if (name == "Dragon"){
+			wizard1.setFont(masterFont);
+			wizard1.append(name +
+						   "\n\n                       ");
+			wizard1.append("\n                         ______________");
+	        wizard1.append("\n                   ,===:'.,            `-._");
+	        wizard1.append("\n                        `:.`---.__         `-._");
+	        wizard1.append("\n                          `:.     `--.         `.");
+	        wizard1.append("\n                            \\.        `.         `.");
+	        wizard1.append("\n                     (,,(,    \\.         `.   ____,-`.,");
+	    	wizard1.append("\n                   (,'     `/   \\.   ,--.___`.'");
+	        wizard1.append("\n             ,  ,'  ,--.  `,   \\.;'         `");
+	        wizard1.append("\n              `{D, {    \\  :    \\;");
+	        wizard1.append("\n                V,,'    /  /    //");
+	        wizard1.append("\n                j;;    /  ,' ,-//.    ,---.      ,");
+	        wizard1.append("\n                \\;'   /  ,' /  _  \\  /  _  \\   ,'/");
+	        wizard1.append("\n                     \\   `'  / \\  `'  / \\  `.' /");
+	        wizard1.append("\n                      `.___,'   `.__,'   `.__,' ");
+			}
+			 else{
 		wizard1.setFont(masterFont);
 		wizard1.append(name +
 					   "\n\n                 _,._      ");
@@ -298,7 +317,7 @@ public class UserInterface {
 		wizard1.append("\n      ||         |_|   ccc/");
 		wizard1.append("\n      ||        ccc/       ");
 		wizard1.append("\n      ||");
-	
+			 }
 		return wizard1;
 	}
 }

@@ -44,10 +44,10 @@ public class WizardRunner {
    //spellBook.add();
    
    // Just using 250 for equal balance testing
-   abstractWizard Hairy = new abstractWizard("Hairy",500,250,250, spellBook);
-   abstractWizard Rob = new abstractWizard("Rob", 500,250,250, spellBook);
+   abstractWizard Hairy = new abstractWizard("Hairy",250,250,250, spellBook);
+   abstractWizard Dragon = new abstractWizard("Dragon", 250,250,250, spellBook);
    
-   BattleSystem.WizardBattleSystem(Hairy, Rob);
+   BattleSystem.WizardBattleSystem(Hairy, Dragon);
    
    
   
