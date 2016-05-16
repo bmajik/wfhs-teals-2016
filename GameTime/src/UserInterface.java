@@ -246,7 +246,30 @@ public class UserInterface {
 	public JTextArea leftWizard(String name){
 		JTextArea wizard2 = new JTextArea();
 		wizard2.setFont(masterFont);
-	
+		if (name == "Rex"){
+			wizard2.setFont(masterFont);
+			wizard2.append(name +
+						   "\n\n                       ");
+			wizard2.append("\n);__../)");
+			wizard2.append("\n-._  \\          /:");
+			wizard2.append("\n_.-\'  \\        ( \\___");
+			wizard2.append("\n  ,'   \\     .'`\\.) :\"-._______");
+			wizard2.append("\n,' .'/||    / /   _ `\"\"`  ```  `,        _ _  ~ - _");
+			wizard2.append("\n .' / ||   / |   ( `.~v~v~v~v~v'  _  -- *     *  _ -");
+			wizard2.append("\n'  /  ||  | .\\    `. `.  __-  ~ -     ~         --   -");
+			wizard2.append("\n  /   ||  | :  `----`. `.  -~ _  _ ~ *           *  -");
+			wizard2.append("\n /    ||   \\:_     /  `. `.  - *__   -    -       __");
+			wizard2.append("\n/    .'/    `.`----\\    `._;        --  _ *  -     _");
+			wizard2.append("\n     ||      `,_    `                     - -__ -");
+			wizard2.append("\n     ||       /  `---':");
+			wizard2.append("\n     ||      /        ;");
+			wizard2.append("\n     ||     /_       :");
+			wizard2.append("\n     ||    /  `-----':");
+			wizard2.append("\n     ||  .'         :");
+			wizard2.append("\n     \\\\.'_         _:\\");
+			wizard2.append("\n      \\\\__`-------'   `.");
+		}	
+		else{
 		wizard2.setText(name + 
 					   "\n                    ____");
 		wizard2.append("\n                  .'* *.'");
@@ -269,7 +292,7 @@ public class UserInterface {
 		wizard2.append("\n         .'   /    b    '.  '.");
 		wizard2.append("\n     _.-'    /     Bb     '-. '-._");
 		wizard2.append("\n _.-'       |      BBb       '-.  '-.");
-	
+			}
 		return wizard2;
 	}
 
