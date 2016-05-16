@@ -97,10 +97,12 @@ public class abstractWizard{
 		if (!spellBook.equals(null)){
 			this.spellBook = new ArrayList<Spell>();
 			this.spellBook = spellBook;
+			
 					
 		}
 		else{
 			System.out.println("Check Dem Spells");
+			System.exit(1);
 			return;
 		}
 		// Checks for cheating on stat points when the wizard is created

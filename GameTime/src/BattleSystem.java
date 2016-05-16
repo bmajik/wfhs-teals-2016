@@ -16,17 +16,16 @@ public class BattleSystem {
 		if (start <.5 ){
 			//if random number is in bottom half of what it could be wizard 1 goes first
 			String temp = w1.castSpell(w2);
-			
-			testerama.update();
 			testerama.ActionBox(temp);
+			testerama.update();
 			//			testerama.updateRightHealth(w2.getHP());		
 			//			testerama.updateRightHealthText(w2.getHP());
 		}
 		else{
 			//if not then wizard 2 goes first
 			String temp2 = w2.castSpell(w1);
-			testerama.update();
 			testerama.ActionBox(temp2);
+			testerama.update();
 			
 //			testerama.updateLeftHealth(w1.getHP());
 //			testerama.updateLeftHealthText(w1.getHP());
@@ -56,9 +55,11 @@ public class BattleSystem {
 			//if (w1.getCurrentSpellCooldown() <= 0){
 				
 			//w1.castSpell(w2);
+			if (w1.getHP() > 0){
 			String temp3 = w1.castSpell(w2);
-			testerama.update();
 			testerama.ActionBox(temp3);
+			testerama.update();
+			}
 
 			//testerama.updateRightHealth(w2.getHP());
 			//testerama.updateRightHealthText(w1.getHP());
@@ -76,9 +77,11 @@ public class BattleSystem {
 				}
 				
 				//w2.castSpell(w1);
+				if (w2.getHP() > 0) {
 				String temp4 = w2.castSpell(w1);
-				testerama.update();
 				testerama.ActionBox(temp4);
+				testerama.update();
+				}
 				//testerama.updateLeftHealth(w1.getHP());
 				//testerama.updateLeftHealthText(w1.getHP());
 				//}

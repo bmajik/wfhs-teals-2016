@@ -15,7 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -39,8 +42,8 @@ public class UserInterface {
 	private JLabel rightIntellectText = new JLabel();
 	private JLabel leftAttunementText = new JLabel();
 	private JLabel rightAttunementText = new JLabel();
-	
-	private JTextArea BottomHalf = new JTextArea();
+	private JPanel BottomPanel = new JPanel();
+	private JTextArea BottomHalf = new JTextArea(5, 30);
 	public void update() {
 		updateLeftHealth(leftWizard.getHP());
 		updateLeftHealthText(leftWizard.getHP());
@@ -79,6 +82,7 @@ public class UserInterface {
 	}
 	ArrayList<String> StoringInfo = new ArrayList<String>();
 	int counterX = 0;
+	
 	
 	// Moving Text from the console and putting it into the bottom box
 	// Allows the battling to be read
@@ -140,7 +144,7 @@ public class UserInterface {
 		pane.setLayout(new GridBagLayout());
 		
 		layoutManager.fill = GridBagConstraints.HORIZONTAL;
-		layoutManager.gridx = 0;
+		layoutManager.gridx = -4;
 		layoutManager.gridy = 0;
 		layoutManager.weightx = .5;
 		layoutManager.weighty = .5;		
@@ -169,7 +173,7 @@ public class UserInterface {
 		layoutManager.gridy++;
 		layoutManager.gridx--;
 		layoutManager.insets = new Insets(0,0,0,10);
-		layoutManager.gridwidth = 2;
+		layoutManager.gridwidth = -20;
 		pane.add(leftHealth, layoutManager);
 		
 		layoutManager.gridx++;
@@ -180,6 +184,8 @@ public class UserInterface {
 		wizard2.add(rightWizard(rightWizard.getName()));
 		wizard1.setBackground(Color.white);
 		wizard2.setBackground(Color.white);
+		AddScroll(BottomHalf);
+		BottomPanel.add(BottomHalf);
 		
 		
 		layoutManager.insets = new Insets(0,0,0,0);	
@@ -191,7 +197,7 @@ public class UserInterface {
 		
 		
 		layoutManager.gridx++;
-		layoutManager.weightx = .665;
+		layoutManager.weightx = 1.965;
 		layoutManager.anchor = GridBagConstraints.BASELINE_TRAILING;
 		pane.add(wizard2, layoutManager);
 		
@@ -204,12 +210,19 @@ public class UserInterface {
 		masterFrame = new JFrame();
 		masterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		masterFrame.setLayout((new BorderLayout()));
-		masterFrame.setSize(1000,700);	
+		masterFrame.setSize(900,700);	
 		masterFrame.add(pane);
 		
 		masterFrame.setVisible(true);
 		
 		masterFrame.getContentPane().setBackground(Color.yellow);
+		
+	}
+	public void AddScroll(JTextArea x) {
+	    x.setBounds(5,5,100,200);
+	    JScrollPane scrolltxt = new JScrollPane(x);
+	    scrolltxt.setBounds(3,3,400,400);
+	    BottomPanel.add(scrolltxt);
 		
 	}
 	public JTextArea leftWizard(String name){
