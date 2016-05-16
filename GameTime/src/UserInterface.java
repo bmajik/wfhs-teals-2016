@@ -24,12 +24,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.text.DefaultCaret;
 
 public class UserInterface {
 
 	private abstractWizard leftWizard = null;
 	private abstractWizard rightWizard = null;
-	
+	private Container pane = new Container();
 	private JFrame masterFrame;
 	private JPanel container = new JPanel();
 	private JPanel wizard1 = new JPanel();
@@ -139,7 +140,7 @@ public class UserInterface {
 		rightIntellectText.setText("Intellect" + leftWizard.getIntellect());
 		leftAttunementText.setText("Attunement" + leftWizard.getAttunement());
 		rightAttunementText.setText("Attunement" + leftWizard.getAttunement());
-		Container pane = new Container();
+		
 		
 		leftHealth.setMaximum(leftWizard.getHP());
 		leftHealth.setValue(leftWizard.getHP());
@@ -209,8 +210,16 @@ public class UserInterface {
 		layoutManager.gridy++;
 		layoutManager.gridx= 0;
 		layoutManager.gridwidth = 6;	
-		pane.add(BottomHalf, layoutManager);
 		
+		DefaultCaret autoScroller = (DefaultCaret)BottomHalf.getCaret();
+		autoScroller.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		 pane.setVisible(true);
+		    pane.setSize(500,500);
+		    BottomHalf.setBounds(5,5,100,200);
+		    scrolltxt=new JScrollPane(BottomHalf);
+		    scrolltxt.setAutoscrolls(true);
+		    scrolltxt.setBounds(3,3,885,125);
+		    pane.add(scrolltxt, layoutManager);
 		
 		masterFrame = new JFrame();
 		masterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -231,12 +240,7 @@ public class UserInterface {
 		
 	}
 	public void CreateScrollBox () {
-		    masterFrame.setVisible(true);
-		    masterFrame.setSize(500,500);
-		    BottomHalf.setBounds(5,5,100,200);
-		    scrolltxt=new JScrollPane(BottomHalf);
-		    scrolltxt.setBounds(3,3,885,125);
-		    masterFrame.add(scrolltxt);
+		   
 
 	}
 	public JTextArea leftWizard(String name){
