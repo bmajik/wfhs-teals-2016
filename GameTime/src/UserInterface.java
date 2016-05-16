@@ -8,7 +8,9 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -42,7 +44,7 @@ public class UserInterface {
 	private JLabel rightIntellectText = new JLabel();
 	private JLabel leftAttunementText = new JLabel();
 	private JLabel rightAttunementText = new JLabel();
-	private JPanel BottomPanel = new JPanel();
+	private JScrollPane BottomPanel = new JScrollPane();
 	private JTextArea BottomHalf = new JTextArea(5, 30);
 	public void update() {
 		updateLeftHealth(leftWizard.getHP());
@@ -144,7 +146,7 @@ public class UserInterface {
 		pane.setLayout(new GridBagLayout());
 		
 		layoutManager.fill = GridBagConstraints.HORIZONTAL;
-		layoutManager.gridx = -4;
+		layoutManager.gridx = 0;
 		layoutManager.gridy = 0;
 		layoutManager.weightx = .5;
 		layoutManager.weighty = .5;		
@@ -171,12 +173,12 @@ public class UserInterface {
 		
 		
 		layoutManager.gridy++;
-		layoutManager.gridx--;
+		layoutManager.gridx= 0;
 		layoutManager.insets = new Insets(0,0,0,10);
-		layoutManager.gridwidth = -20;
+		layoutManager.gridwidth = 3;
 		pane.add(leftHealth, layoutManager);
 		
-		layoutManager.gridx++;
+		layoutManager.gridx = 3;
 		layoutManager.insets = new Insets(0,10,0,0);
 		pane.add(rightHealth, layoutManager);
 		
@@ -185,25 +187,26 @@ public class UserInterface {
 		wizard1.setBackground(Color.white);
 		wizard2.setBackground(Color.white);
 		AddScroll(BottomHalf);
+		BottomPanel.setBounds(new Rectangle (500, 200));
 		BottomPanel.add(BottomHalf);
 		
 		
 		layoutManager.insets = new Insets(0,0,0,0);	
 		layoutManager.fill = GridBagConstraints.BOTH;
 		layoutManager.gridy++;
-		layoutManager.gridx--;	
+		layoutManager.gridx = 0 ;	
 		layoutManager.anchor = GridBagConstraints.BASELINE_LEADING;
 		pane.add(wizard1, layoutManager);
 		
 		
-		layoutManager.gridx++;
+		layoutManager.gridx = 3;
 		layoutManager.weightx = 1.965;
 		layoutManager.anchor = GridBagConstraints.BASELINE_TRAILING;
 		pane.add(wizard2, layoutManager);
 		
 		layoutManager.gridy++;
-		layoutManager.gridx--;
-		layoutManager.gridwidth = 2;	
+		layoutManager.gridx= 0;
+		layoutManager.gridwidth = 6;	
 		pane.add(BottomHalf, layoutManager);
 		
 		
