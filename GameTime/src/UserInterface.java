@@ -46,6 +46,9 @@ public class UserInterface {
 	private JLabel rightAttunementText = new JLabel();
 	private JScrollPane BottomPanel = new JScrollPane();
 	private JTextArea BottomHalf = new JTextArea(5, 30);
+    JFrame f;
+    JTextArea ta;
+    JScrollPane scrolltxt;
 	public void update() {
 		updateLeftHealth(leftWizard.getHP());
 		updateLeftHealthText(leftWizard.getHP());
@@ -186,7 +189,6 @@ public class UserInterface {
 		wizard2.add(rightWizard(rightWizard.getName()));
 		wizard1.setBackground(Color.white);
 		wizard2.setBackground(Color.white);
-		AddScroll(BottomHalf);
 		BottomPanel.setBounds(new Rectangle (500, 200));
 		BottomPanel.add(BottomHalf);
 		
@@ -213,20 +215,29 @@ public class UserInterface {
 		masterFrame = new JFrame();
 		masterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		masterFrame.setLayout((new BorderLayout()));
+		CreateScrollBox();
 		masterFrame.setSize(900,700);	
+		AddScroll(BottomHalf, masterFrame);
 		masterFrame.add(pane);
+		
 		
 		masterFrame.setVisible(true);
 		
 		masterFrame.getContentPane().setBackground(Color.yellow);
 		
 	}
-	public void AddScroll(JTextArea x) {
-	    x.setBounds(5,5,100,200);
-	    JScrollPane scrolltxt = new JScrollPane(x);
-	    scrolltxt.setBounds(3,3,400,400);
-	    BottomPanel.add(scrolltxt);
+	public void AddScroll(JTextArea x, JFrame o) {
+	    
 		
+	}
+	public void CreateScrollBox () {
+		    masterFrame.setVisible(true);
+		    masterFrame.setSize(500,500);
+		    BottomHalf.setBounds(5,5,100,200);
+		    scrolltxt=new JScrollPane(BottomHalf);
+		    scrolltxt.setBounds(3,3,885,125);
+		    masterFrame.add(scrolltxt);
+
 	}
 	public JTextArea leftWizard(String name){
 		JTextArea wizard2 = new JTextArea();
