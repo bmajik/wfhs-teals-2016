@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class abstractWizard{
+public abstract class abstractWizard{
 	//IDEAS:
 	/* Wizard Duels - Intellect vs Intellect
 	 * Flying
@@ -88,6 +88,12 @@ public class abstractWizard{
 	public void setWarded(boolean warded) {
 		this.warded = warded;
 	}
+	public void setSpellBook(ArrayList<Spell> spellBook){
+		this.spellBook =spellBook;
+	}
+	public ArrayList<Spell> getSpellBook(){
+		return this.spellBook;
+	}
 	//utilities
 	private ArrayList<Spell> spellBook;
 	
@@ -122,6 +128,9 @@ public class abstractWizard{
 			//make sure that they pass in valid stats
 			
 	}
+	public abstract Spell chooseSpell();
+		
+	
 	public String castSpell(abstractWizard w2){
 		// NEED TO IMPLEMENT check for disarmed or other inhibitors
 		
