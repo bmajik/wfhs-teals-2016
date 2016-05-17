@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
-
-
 public class BattleSystem {
 	//exists because I don't know how to time stuff
 	private static long timeTracker;
@@ -46,8 +43,8 @@ public class BattleSystem {
 
 			//check if wizard 1 can cast a spell
 			//if (w1.getCurrentSpellCooldown() <= 0){
-
 			//w1.castSpell(w2);
+			
 			if (w1.getHP() > 0){
 				String temp3 = w1.castSpell(w2);
 				testerama.ActionBox(temp3);
@@ -58,6 +55,7 @@ public class BattleSystem {
 			//check if wizard 2 can cast a spell
 			//else if(w2.getCurrentSpellCooldown()<= 0 )
 			//{
+			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

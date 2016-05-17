@@ -1,16 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
-
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
 public class ProgressBar extends JFrame {
-
-    private JProgressBar progressBar;
-
+	private JProgressBar progressBar;
     public ProgressBar() {
-        
         setSize(200, 100);
         Container content = getContentPane();
         content.setLayout(new BorderLayout());

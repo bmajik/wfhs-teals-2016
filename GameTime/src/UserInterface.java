@@ -1,29 +1,20 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.text.DefaultCaret;
 
 public class UserInterface {
@@ -32,7 +23,6 @@ public class UserInterface {
 	private abstractWizard rightWizard = null;
 	private Container pane = new Container();
 	private JFrame masterFrame;
-	private JPanel container = new JPanel();
 	private JPanel wizard1 = new JPanel();
 	private JPanel wizard2 = new JPanel();
 	private final Font masterFont = new Font("Courier", Font.PLAIN, 12);
@@ -47,8 +37,6 @@ public class UserInterface {
 	private JLabel rightAttunementText = new JLabel();
 	private JScrollPane BottomPanel = new JScrollPane();
 	private JTextArea BottomHalf = new JTextArea(5, 30);
-    JFrame f;
-    JTextArea ta;
     JScrollPane scrolltxt;
 	public void update() {
 		updateLeftHealth(leftWizard.getHP());
@@ -89,7 +77,6 @@ public class UserInterface {
 	ArrayList<String> StoringInfo = new ArrayList<String>();
 	int counterX = 0;
 	
-	
 	// Moving Text from the console and putting it into the bottom box
 	// Allows the battling to be read
 	public JTextArea ActionBox(String temp){
@@ -97,12 +84,11 @@ public class UserInterface {
 		// Because the Amount of strings we want to pass in keeps going up,
 		// this was the easiest way i could implement an ever changing variable
 		StoringInfo.add(temp);
-		
-		while (counterX < StoringInfo.size()){
-			BottomHalf.append(StoringInfo.get(counterX));
-			if (StoringInfo.get(counterX) != null){
-			BottomHalf.append("\n");
-			}
+	while (counterX < StoringInfo.size()){
+		BottomHalf.append(StoringInfo.get(counterX));
+		if (StoringInfo.get(counterX) != null){
+		BottomHalf.append("\n");
+		}
 			counterX++;
 		}
 		return BottomHalf;	
@@ -115,7 +101,6 @@ public class UserInterface {
 			BottomHalf.append("Wizard " + x.getName() + " is the Winner of this battle!");
 		}
 		return BottomHalf;
-		
 	}
 	public UserInterface(abstractWizard w1, abstractWizard w2)
 	{
@@ -141,7 +126,6 @@ public class UserInterface {
 		leftAttunementText.setText("Attunement" + leftWizard.getAttunement());
 		rightAttunementText.setText("Attunement" + leftWizard.getAttunement());
 		
-		
 		leftHealth.setMaximum(leftWizard.getHP());
 		leftHealth.setValue(leftWizard.getHP());
 		rightHealth.setMaximum(rightWizard.getHP());	
@@ -162,9 +146,6 @@ public class UserInterface {
 		layoutManager.gridx++;
 		pane.add(leftAttunementText, layoutManager);
 		
-		
-		
-		
 		layoutManager.gridx++;
 		rightHealthText.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		pane.add(rightHealthText, layoutManager);
@@ -174,7 +155,6 @@ public class UserInterface {
 		
 		layoutManager.gridx++;
 		pane.add(rightAttunementText, layoutManager);
-		
 		
 		layoutManager.gridy++;
 		layoutManager.gridx= 0;
@@ -193,14 +173,12 @@ public class UserInterface {
 		BottomPanel.setBounds(new Rectangle (500, 200));
 		BottomPanel.add(BottomHalf);
 		
-		
 		layoutManager.insets = new Insets(0,0,0,0);	
 		layoutManager.fill = GridBagConstraints.BOTH;
 		layoutManager.gridy++;
 		layoutManager.gridx = 0 ;	
 		layoutManager.anchor = GridBagConstraints.BASELINE_LEADING;
 		pane.add(wizard1, layoutManager);
-		
 		
 		layoutManager.gridx = 3;
 		layoutManager.weightx = 1.965;
@@ -213,35 +191,22 @@ public class UserInterface {
 		
 		DefaultCaret autoScroller = (DefaultCaret)BottomHalf.getCaret();
 		autoScroller.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-		 pane.setVisible(true);
-		    pane.setSize(500,500);
-		    BottomHalf.setBounds(5,5,100,200);
-		    scrolltxt=new JScrollPane(BottomHalf);
-		    scrolltxt.setAutoscrolls(true);
-		    scrolltxt.setBounds(3,3,885,125);
-		    pane.add(scrolltxt, layoutManager);
+		pane.setVisible(true);
+		pane.setSize(500,500);
+	    BottomHalf.setBounds(5,5,100,200);
+	    scrolltxt=new JScrollPane(BottomHalf);
+    	scrolltxt.setAutoscrolls(true);
+		scrolltxt.setBounds(3,3,885,125);
+		pane.add(scrolltxt, layoutManager);
 		
 		masterFrame = new JFrame();
 		masterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		masterFrame.setLayout((new BorderLayout()));
-		CreateScrollBox();
 		masterFrame.setSize(900,700);	
-		AddScroll(BottomHalf, masterFrame);
 		masterFrame.add(pane);
-		
-		
 		masterFrame.setVisible(true);
-		
 		masterFrame.getContentPane().setBackground(Color.yellow);
 		
-	}
-	public void AddScroll(JTextArea x, JFrame o) {
-	    
-		
-	}
-	public void CreateScrollBox () {
-		   
-
 	}
 	public JTextArea leftWizard(String name){
 		JTextArea wizard2 = new JTextArea();
