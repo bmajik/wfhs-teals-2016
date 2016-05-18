@@ -47,7 +47,8 @@ public class WizardRunner {
    abstractWizard Hairy = new BYOW("Hairy",250,250,250, spellBook);
    abstractWizard Bob = new BYOW("Bob", 250,250,250, spellBook);
    
-   BattleSystem.WizardBattleSystem(Hairy, Bob);
+   BattleSystem b = new BattleSystem();
+   b.WizardBattleSystem(Hairy, Bob);
    
    
   

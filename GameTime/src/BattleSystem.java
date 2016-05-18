@@ -3,7 +3,7 @@ public class BattleSystem {
 	//exists because I don't know how to time stuff
 	private static long timeTracker;
 	public static ArrayList<Spell> spellBook = new ArrayList<Spell>();
-	public static void WizardBattleSystem(abstractWizard w1, abstractWizard w2)
+	public void WizardBattleSystem(abstractWizard w1, abstractWizard w2)
 	{
 		UserInterface testerama = new UserInterface(w1, w2);
 		timeTracker = 0;
@@ -121,23 +121,22 @@ public class BattleSystem {
 								
 				if(wCaster.getHP() + healingAmount > wCaster.getHP())
 				{
-					healingAmount = wCaster.maxHP-this.HP;
-					this.HP = this.maxHP;
-					 
+					healingAmount = wCaster.GetMaxHP() - wCaster.getHP();
+					wCaster.RestoreAllHeatlh();
 				}
 				else{
-					this.setHP(this.HP + healingAmount);
+					wCaster.setHP(wCaster.getHP() + healingAmount);
 				}
 					
-				System.out.println(this.getName() + " healed for " + healingAmount + " health" );
-				return this.getName() +" casts "+ chosenSpell.getName() + "\n" + this.getName() + " healed for " + healingAmount + " health" ;
+				System.out.println(wCaster.getName() + " healed for " + healingAmount + " health" );
+				return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + wCaster.getName() + " healed for " + healingAmount + " health" ;
 			}
 			
 		}
 		else if (wRecieve.getWarded()){
 			System.out.println(chosenSpell.getName() + " was blocked");			
-			this.setWarded(false);
-			return this.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " was blocked";
+			wRecieve.setWarded(false);
+			return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " was blocked";
 		}
 		//This code exists under the assumption that disarm does nothing but disarm
 		else if (chosenSpell.getDisarm())
@@ -147,8 +146,8 @@ public class BattleSystem {
 			StatusEffect disarm  = new StatusEffect();
 				System.out.println(wRecieve.getName()+ " was disarmed");
 				wRecieve.setCastAbility(false);
-				this.currentEffects.add(disarm);
-			return this.getName() +" casts "+ chosenSpell.getName() + "\n" + wRecieve.getName()+ " was disarmed";
+				wRecieve.currentEffects.add(disarm);
+			return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + wRecieve.getName()+ " was disarmed";
 			}
 						
 		
@@ -157,13 +156,13 @@ public class BattleSystem {
 		
 		else{
 			//calculate damage based on wizards intellect and spell power
-			int damage = (int)(this.getIntellect()*.01) * chosenSpell.getPower();
+			int damage = (int)(wCaster.getIntellect()*.01) * chosenSpell.getPower();
 			System.out.println(chosenSpell.getName() + " dealt "+ damage + " damage");
 			//current way of modifying opponents health
-			wRecieve.setHP(wRecieve.HP- damage);
+			wRecieve.setHP(wRecieve.getHP() - damage);
 			System.out.println(wRecieve.getName() + " has " +wRecieve.getHP() + " health left");
 		 
-		return this.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " dealt "+ damage + " damage" + "\n" + wRecieve.getName() + " has " +wRecieve.getHP() + " health left";
+		return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " dealt "+ damage + " damage" + "\n" + wRecieve.getName() + " has " +wRecieve.getHP() + " health left";
 		}
 	
 	}

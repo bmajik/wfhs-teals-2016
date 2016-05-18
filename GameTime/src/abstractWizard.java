@@ -30,7 +30,7 @@ public abstract class abstractWizard{
 	private boolean warded;
 	
 	//Effects
-	private ArrayList<StatusEffect> currentEffects = new ArrayList<StatusEffect>();
+	protected ArrayList<StatusEffect> currentEffects = new ArrayList<StatusEffect>();
 
 	long tempTimer = System.nanoTime();
 	
@@ -71,6 +71,15 @@ public abstract class abstractWizard{
 	public void setMaxHP(int MaxHP){
 		maxHP = MaxHP;
 	}
+
+	public int GetMaxHP() {
+		return this.maxHP;
+	}
+	
+	public void RestoreAllHeatlh() {
+		this.setHP(this.maxHP);
+	}
+	
 	public void setIntellect(int intellect) {
 		Intellect = intellect;
 	}
