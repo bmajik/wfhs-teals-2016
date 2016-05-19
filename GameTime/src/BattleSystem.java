@@ -99,6 +99,10 @@ public class BattleSystem {
 		
 		Spell chosenSpell = wCaster.chooseSpell();
 		
+		if (chosenSpell == null) {
+			chosenSpell = new Spell("(null)", 0, 0);
+		}
+		
 		//set value of current spells cool down for use in BattleSystem
 		wCaster.setCurrentSpellCooldown(chosenSpell.getCoolDown()); 
 		System.out.println(wCaster.getName() +" casts "+ chosenSpell.getName());
