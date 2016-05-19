@@ -54,12 +54,6 @@ public class BattleSystem {
 		{
 			//track time at beginning for cool down purposes
 			long timeAtStart = System.currentTimeMillis();
-			
-			//lower the cool downs by time elapsed from previous loop 
-			//yes that makes this loop useless at first loop
-			if (w1.getCurrentSpellCooldown() < 0){
-				System.out.println("five");
-			}
 
 			//check if wizard 1 can cast a spell
 			if (w1.getCurrentSpellCooldown() <= 0){
@@ -69,8 +63,9 @@ public class BattleSystem {
 					testerama.update();
 				}
 			}
+
 			//check if wizard 2 can cast a spell
-			else if(w2.getCurrentSpellCooldown()<= 0 )
+			if(w2.getCurrentSpellCooldown()<= 0 )
 			{
 				if (w2.getHP() > 0) {
 					String temp4 = castSpell(w2,w1);
@@ -89,15 +84,15 @@ public class BattleSystem {
 				System.out.println("Problem, we have a Houston");
 			}
 
-			
+
 			//track time at end for cool down purposes		
 			long timeAtFinish = System.currentTimeMillis();
 
 			//figure out elapsed loop time
 			timeTracker = timeAtFinish - timeAtStart;
 			//System.out.println(timeTracker);
-			
-			
+
+
 			//cool down implementation
 			w1.setCurrentSpellCooldown(w1.getCurrentSpellCooldown() - timeTracker);	
 			w2.setCurrentSpellCooldown(w2.getCurrentSpellCooldown() - timeTracker);
