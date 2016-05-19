@@ -6,7 +6,7 @@ public class BattleSystem {
 
 	abstractWizard LeftWizard;
 	abstractWizard RightWizard;
-	
+
 	// determine if either wizard is in a cheating state...
 	private boolean Cheating() {
 		boolean cheating = false;
@@ -20,16 +20,16 @@ public class BattleSystem {
 		}
 		return cheating;
 	}
-	
+
 	public void WizardBattleSystem(abstractWizard w1, abstractWizard w2)
 	{
 		this.LeftWizard = w1;
 		this.RightWizard = w2;
-		
+
 		if (this.Cheating()) {
 			System.exit(1);
 		}
-		
+
 		UserInterface testerama = new UserInterface(w1, w2);
 		timeTracker = 0;
 
@@ -52,69 +52,63 @@ public class BattleSystem {
 		//Check health repeatedly 
 		while (w1.getHP() > 0 && w2.getHP() > 0)
 		{
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				System.out.println("Problem, we have a Houston");
-			}
 			//track time at beginning for cool down purposes
 			long timeAtStart = System.currentTimeMillis();
-
+			
 			//lower the cool downs by time elapsed from previous loop 
 			//yes that makes this loop useless at first loop
 			if (w1.getCurrentSpellCooldown() < 0){
 				System.out.println("five");
 			}
-			w1.setCurrentSpellCooldown(w1.getCurrentSpellCooldown() - timeTracker/(long)1000);	
-			w2.setCurrentSpellCooldown(w2.getCurrentSpellCooldown() - timeTracker/(long)1000);
 
 			//check if wizard 1 can cast a spell
-			//if (w1.getCurrentSpellCooldown() <= 0){
-			//w1.castSpell(w2);
-			
-			if (w1.getHP() > 0){
-				String temp3 = castSpell(w1,w2);
-				testerama.ActionBox(temp3);
-				testerama.update();
+			if (w1.getCurrentSpellCooldown() <= 0){
+				if (w1.getHP() > 0){
+					String temp3 = castSpell(w1,w2);
+					testerama.ActionBox(temp3);
+					testerama.update();
+				}
 			}
-
-			//}
 			//check if wizard 2 can cast a spell
-			//else if(w2.getCurrentSpellCooldown()<= 0 )
-			//{
-			
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-
-				System.out.println("Problem, we have a Houston");
-			}
-
-			//w2.castSpell(w1);
-			if (w2.getHP() > 0) {
-				String temp4 = castSpell(w2,w1);
-				testerama.ActionBox(temp4);
-				testerama.update();
+			else if(w2.getCurrentSpellCooldown()<= 0 )
+			{
+				if (w2.getHP() > 0) {
+					String temp4 = castSpell(w2,w1);
+					testerama.ActionBox(temp4);
+					testerama.update();
+				}
 			}
 
 			//create a pause in the code to prevent system usage from executing
 			//an infinite amount of times while it waits on cool down
 			//since it will check repeatedly if a wizard can cast a spell
 
+			try {
+				Thread.sleep(75);
+			} catch (InterruptedException e) {
+				System.out.println("Problem, we have a Houston");
+			}
+
+			
 			//track time at end for cool down purposes		
 			long timeAtFinish = System.currentTimeMillis();
 
 			//figure out elapsed loop time
 			timeTracker = timeAtFinish - timeAtStart;
-
+			System.out.println(timeTracker);
+			
+			
 			//cool down implementation
+			w1.setCurrentSpellCooldown(w1.getCurrentSpellCooldown() - timeTracker);	
+			w2.setCurrentSpellCooldown(w2.getCurrentSpellCooldown() - timeTracker);
+
 		}
 		testerama.AnnounceWinner(w1,w2);
 	}
-	
+
 	public String castSpell(abstractWizard wCaster, abstractWizard wRecieve){
 		// NEED TO IMPLEMENT check for disarmed or other inhibitors
-		
+
 		if (!wCaster.getCastAbility())
 		{
 			//they can't cast a spell if they are disarmed
@@ -123,16 +117,17 @@ public class BattleSystem {
 			wCaster.setCastAbility(true);
 			return wCaster.getName() + " is disarmed, they cannot cast a spell";
 		}
-		
+
 		Spell chosenSpell = wCaster.chooseSpell();
-		
+
 		if (chosenSpell == null) {
 			chosenSpell = new Spell("(null)", 0, 0);
 		}
-		
+
 		//set value of current spells cool down for use in BattleSystem
 		wCaster.setCurrentSpellCooldown(chosenSpell.getCoolDown()); 
 		System.out.println(wCaster.getName() +" casts "+ chosenSpell.getName());
+
 		//check if spell is targeting self
 		if (chosenSpell.getSelfTargeting()){
 			//check for protective spell
@@ -143,13 +138,13 @@ public class BattleSystem {
 			}
 			//assuming that if it isn't a ward it heals the wizard 
 			//Will be changed if more self-targeting spells are implemented
-			
+
 			else{
 				//May need to be changed, 
 				//regenerates HP based on Spell and Intellect
-				
+
 				int healingAmount = chosenSpell.getHealer()*wCaster.getIntellect();
-								
+
 				if(wCaster.getHP() + healingAmount > wCaster.getHP())
 				{
 					healingAmount = wCaster.GetMaxHP() - wCaster.getHP();
@@ -158,11 +153,11 @@ public class BattleSystem {
 				else{
 					wCaster.setHP(wCaster.getHP() + healingAmount);
 				}
-					
+
 				System.out.println(wCaster.getName() + " healed for " + healingAmount + " health" );
 				return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + wCaster.getName() + " healed for " + healingAmount + " health" ;
 			}
-			
+
 		}
 		else if (wRecieve.getWarded()){
 			System.out.println(chosenSpell.getName() + " was blocked");			
@@ -175,16 +170,12 @@ public class BattleSystem {
 			//disarm will prevent opponent from casting spell
 			//unless they are warded
 			StatusEffect disarm  = new StatusEffect();
-				System.out.println(wRecieve.getName()+ " was disarmed");
-				wRecieve.setCastAbility(false);
-				wRecieve.currentEffects.add(disarm);
+			System.out.println(wRecieve.getName()+ " was disarmed");
+			wRecieve.setCastAbility(false);
+			wRecieve.currentEffects.add(disarm);
 			return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + wRecieve.getName()+ " was disarmed";
-			}
-						
-		
+		}
 		//assuming that if it isn't self-targeting or disarming, its a damaging attack
-		
-		
 		else{
 			//calculate damage based on wizards intellect and spell power
 			int damage = (int)(wCaster.getIntellect()*.01) * chosenSpell.getPower();
@@ -192,9 +183,8 @@ public class BattleSystem {
 			//current way of modifying opponents health
 			wRecieve.setHP(wRecieve.getHP() - damage);
 			System.out.println(wRecieve.getName() + " has " +wRecieve.getHP() + " health left");
-		 
-		return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " dealt "+ damage + " damage" + "\n" + wRecieve.getName() + " has " +wRecieve.getHP() + " health left";
+
+			return wCaster.getName() +" casts "+ chosenSpell.getName() + "\n" + chosenSpell.getName() + " dealt "+ damage + " damage" + "\n" + wRecieve.getName() + " has " +wRecieve.getHP() + " health left";
 		}
-	
 	}
 }

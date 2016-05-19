@@ -54,6 +54,8 @@ public abstract class abstractWizard{
 	public boolean getWarded() {
 		return warded;
 	}
+	
+	// cool down, in milliseconds
 	public long getCurrentSpellCooldown() {
 		return currentSpellCooldown;
 	}
@@ -63,8 +65,11 @@ public abstract class abstractWizard{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	// cool down, in milliseconds
 	public void setCurrentSpellCooldown(long currentSpellCooldown) {
 		this.currentSpellCooldown = currentSpellCooldown;
+		System.out.println(this.name + " cooldown:" + this.currentSpellCooldown);
 	}
 	public void setHP(int hP) {
 		HP = hP;
