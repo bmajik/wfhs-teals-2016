@@ -69,7 +69,7 @@ public abstract class abstractWizard{
 	// cool down, in milliseconds
 	public void setCurrentSpellCooldown(long currentSpellCooldown) {
 		this.currentSpellCooldown = currentSpellCooldown;
-		System.out.println(this.name + " cooldown:" + this.currentSpellCooldown);
+		//System.out.println(this.name + " cooldown:" + this.currentSpellCooldown);
 	}
 	public void setHP(int hP) {
 		HP = hP;

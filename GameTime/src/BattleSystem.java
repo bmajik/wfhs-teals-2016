@@ -95,7 +95,7 @@ public class BattleSystem {
 
 			//figure out elapsed loop time
 			timeTracker = timeAtFinish - timeAtStart;
-			System.out.println(timeTracker);
+			//System.out.println(timeTracker);
 			
 			
 			//cool down implementation
