@@ -45,7 +45,7 @@ public class WizardRunner {
    
    // Just using 250 for equal balance testing
    abstractWizard Hairy = new randomWizard("Hairy", spellBook);
-   abstractWizard Bob = new BYOW("Bob", 100, 100, 100, spellBook);
+   abstractWizard Bob = new BYOW("Bob", 500, 250, 250, spellBook);
    
    BattleSystem b = new BattleSystem();
    b.WizardBattleSystem(Hairy, Bob);
