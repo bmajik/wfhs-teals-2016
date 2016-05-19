@@ -6,18 +6,18 @@ public class GrandWizardLogan extends abstractWizard {
 		public GrandWizardLogan (String name, ArrayList<Spell> spellBook){
 			
 			// you have to call the base constructor first..
-			super("GrandWizardLogan", 700, 50, 200, spellBook);
+			super("GrandWizardLogan", 600, 200, 200, spellBook);
 
 		}
 		
 		@Override
 		public Spell chooseSpell() {
 			int spellerama;
-			double num = Math.random();
-			if(num < .5){
-				spellerama = 3;
-			}else{
+			
+			if(this.getHP() < 300){
 				spellerama = 10;
+			}else{
+				spellerama = 3;
 			}
 			Spell theOne = this.getSpellBook().get(spellerama);
 			return theOne;
