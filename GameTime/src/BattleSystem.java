@@ -3,10 +3,36 @@ public class BattleSystem {
 	//exists because I don't know how to time stuff
 	private static long timeTracker;
 	public static ArrayList<Spell> spellBook = new ArrayList<Spell>();
+
+	abstractWizard LeftWizard;
+	abstractWizard RightWizard;
+	
+	// determine if either wizard is in a cheating state...
+	private boolean Cheating() {
+		boolean cheating = false;
+		if (!LeftWizard.AreStatsValid()) {
+			System.out.println("LeftWizard " + LeftWizard.getName() + " is stat cheating");
+			cheating = true;
+		}
+		if (!RightWizard.AreStatsValid()) {
+			System.out.println("RightWizard " + RightWizard.getName() + " is stat cheating");
+			cheating = true;
+		}
+		return cheating;
+	}
+	
 	public void WizardBattleSystem(abstractWizard w1, abstractWizard w2)
 	{
+		this.LeftWizard = w1;
+		this.RightWizard = w2;
+		
+		if (this.Cheating()) {
+			System.exit(1);
+		}
+		
 		UserInterface testerama = new UserInterface(w1, w2);
 		timeTracker = 0;
+
 		//need way of starting fight fairly as neither wizard is on cool down yet
 		double start = Math.random(); 
 		if (start <.5 ){
@@ -21,12 +47,13 @@ public class BattleSystem {
 			testerama.ActionBox(temp2);
 			testerama.update();
 		}
+
 		//Start loop here, since both wizards are now on cool down
 		//Check health repeatedly 
 		while (w1.getHP() > 0 && w2.getHP() > 0)
 		{
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 				System.out.println("Problem, we have a Houston");
 			}
@@ -57,7 +84,7 @@ public class BattleSystem {
 			//{
 			
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 
 				System.out.println("Problem, we have a Houston");

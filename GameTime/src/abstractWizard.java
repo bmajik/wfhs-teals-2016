@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+
 public abstract class abstractWizard{
 	//IDEAS:
 	/* Wizard Duels - Intellect vs Intellect
@@ -12,13 +13,13 @@ public abstract class abstractWizard{
 	 *Disarm by chance?
 	 *if Disarms meet - disarm both or cancel it?
 	 */
-			
+
 	//FINALS
 	private final int maxStatPoints = 1000;	
 
 	//Funstuff
 	private String name;
-	
+
 	//Stats
 	private int HP;
 	private int maxHP;
@@ -28,12 +29,12 @@ public abstract class abstractWizard{
 	private int countAnnoyances;
 	private boolean castAbility;
 	private boolean warded;
-	
+
 	//Effects
 	protected ArrayList<StatusEffect> currentEffects = new ArrayList<StatusEffect>();
 
 	long tempTimer = System.nanoTime();
-	
+
 	//getters and setters
 	public int getHP() {
 		return HP;
@@ -75,15 +76,15 @@ public abstract class abstractWizard{
 	public int GetMaxHP() {
 		return this.maxHP;
 	}
-	
+
 	public void RestoreAllHeatlh() {
 		this.setHP(this.maxHP);
 	}
-	
+
 	public void setIntellect(int intellect) {
 		Intellect = intellect;
 	}
-	
+
 	public void setAttunement(int attunement) {
 		Attunement = attunement;
 	}
@@ -104,38 +105,45 @@ public abstract class abstractWizard{
 	}
 	//utilities
 	private ArrayList<Spell> spellBook;
-	
+
 	public abstractWizard(String name,int HP,int Intellect,int Attunement, ArrayList<Spell> spellBook){
 		//wizards need spells to fight, so make sure they are passing in a non-null value
 		this.name = name;
 		if (!spellBook.equals(null)){
 			this.spellBook = new ArrayList<Spell>();
 			this.spellBook = spellBook;
-			
-					
 		}
 		else{
 			System.out.println("Check Dem Spells");
 			System.exit(1);
 			return;
 		}
+		
 		// Checks for cheating on stat points when the wizard is created
 		// System.exit(1) -Terminates the rest of the program immediately
-		if (maxStatPoints < HP + Intellect + Attunement){
+		if (!AreStatsValid()) {
+			System.exit(1);
+		}
+		
+		//set initial values
+		this.HP = HP;
+		this.maxHP = HP;
+		this.Intellect = Intellect;
+		this.Attunement = Attunement;
+		this.castAbility = true;
+		//make sure that they pass in valid stats
+
+	}
+	
+	public final boolean AreStatsValid() {
+		if (maxStatPoints < this.HP + this.Intellect + this.Attunement) {
 			System.out.println("A Wizards Stats don't equal 1000 or less");
 			System.out.println("#CheatersNeverWin #CaughtYou #GetRektKid -SR");
-			System.exit(1);
-			return;
+			return false;
 		}
-		//set initial values
-			this.HP = HP;
-			this.maxHP = HP;
-			this.Intellect = Intellect;
-			this.Attunement = Attunement;
-			this.castAbility = true;
-			//make sure that they pass in valid stats
-			
+		return true;
 	}
+	
 	public abstract Spell chooseSpell();
-		
+
 }

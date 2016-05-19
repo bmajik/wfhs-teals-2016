@@ -121,10 +121,10 @@ public class UserInterface {
 	
 		leftHealthText.setText("Health:"+ leftWizard.getHP());
 		rightHealthText.setText("Health:"+ rightWizard.getHP());
-		leftIntellectText.setText("Intellect" + leftWizard.getIntellect());
-		rightIntellectText.setText("Intellect" + leftWizard.getIntellect());
-		leftAttunementText.setText("Attunement" + leftWizard.getAttunement());
-		rightAttunementText.setText("Attunement" + leftWizard.getAttunement());
+		leftIntellectText.setText("Intellect:" + leftWizard.getIntellect());
+		rightIntellectText.setText("Intellect:" + rightWizard.getIntellect());
+		leftAttunementText.setText("Attunement:" + leftWizard.getAttunement());
+		rightAttunementText.setText("Attunement:" + rightWizard.getAttunement());
 		
 		leftHealth.setMaximum(leftWizard.getHP());
 		leftHealth.setValue(leftWizard.getHP());
