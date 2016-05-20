@@ -34,7 +34,7 @@ public class randomWizard extends abstractWizard {
 	}
 	
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstarctWizard enemy) {
 		// i always choose a random spell
 		int spellBookSize = this.getSpellBook().size();
 		return this.getSpellBook().get((int)(Math.random() * spellBookSize));
