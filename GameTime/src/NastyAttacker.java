@@ -8,7 +8,7 @@ public class NastyAttacker extends abstractWizard {
 	}
 
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstractWizard enemy) {
 		// TODO Auto-generated method stub
 		Spell n = new Spell("Avada Kedavra", 1000, 1);
 		return n;
