@@ -113,7 +113,7 @@ public class BattleSystem {
 			return wCaster.getName() + " is disarmed, they cannot cast a spell";
 		}
 
-		Spell chosenSpell = wCaster.chooseSpell();
+		Spell chosenSpell = wCaster.chooseSpell(wRecieve);
 
 		if (chosenSpell == null) {
 			chosenSpell = new Spell("(null)", 0, 0);
