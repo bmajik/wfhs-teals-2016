@@ -16,8 +16,8 @@ public class WizardRunner {
    //Defense Spells - check parameters
    Spell disarm = new Spell("Expelliermus",true,1000);//disarm 
    Spell reflect = new Spell("Protego",20,1000);//reflect spell effect to caster
-   Spell healLoseAttunement = new Spell("Episkey",20,true,1000);//heal and lose attunement
-   Spell stopIt = new Spell("Finite Incantantum",0,true,1000);//stop all spells???
+   Spell healLoseAttunement = new Spell("Episkey",20,true,5000);//heal and lose attunement
+   Spell stopIt = new Spell("Finite Incantantum",0,true,2000);//stop all spells???
    
    
    spellBook.add(disarm);
@@ -37,13 +37,10 @@ public class WizardRunner {
    //spellBook.add();
    
    // Just using 250 for equal balance testing
-   abstractWizard Hairy = new randomWizard("Hairy", spellBook);
-   abstractWizard Bob = new randomWizard("Bob", spellBook);
+   abstractWizard Spencer= new CoopDestroyer("Rex", spellBook);
+   abstractWizard w2 = new VetterWizard(spellBook);
    
    BattleSystem b = new BattleSystem();
-   b.WizardBattleSystem(Hairy, Bob);
-   
-   
-  
+   b.WizardBattleSystem(Spencer, w2);
  }
 }
