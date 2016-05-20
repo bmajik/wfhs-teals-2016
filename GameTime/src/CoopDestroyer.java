@@ -5,7 +5,7 @@ public class CoopDestroyer extends abstractWizard{
  super(name, 500, 498, 2, spellBook);
  }
  /*
- ***CHEAT SHEET:
+ ***CHEAT SHEET:/
  *All numbers based on 300 Intellect
  0 = Disarm
  1 = D-60
