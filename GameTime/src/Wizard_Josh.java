@@ -24,7 +24,7 @@ public class Wizard_Josh extends abstractWizard {
 	}
 
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstractWizard enemy) {
 		double healthPercent = (this.getHP()/this.GetMaxHP());
 		if(healthPercent < 0.38){
 			return this.getSpellBook().get(10);
