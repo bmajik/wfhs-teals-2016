@@ -7,7 +7,7 @@ public class samiraWizard extends abstractWizard {
 	}
 
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstractWizard enemy) {
 		if(this.getHP() <= 75) {
 			return this.getSpellBook().get(10);
 		}else if (this.getHP() >= 425){
