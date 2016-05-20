@@ -20,7 +20,7 @@ public class CoopDestroyer extends abstractWizard{
  10 = Heal
  */
  @Override
- public Spell chooseSpell() {
+ public Spell chooseSpell(abstractWizard x) {
  Spell choosenSpell = null;
  while (getHP() > 0){
  if(getHP() < 180){
