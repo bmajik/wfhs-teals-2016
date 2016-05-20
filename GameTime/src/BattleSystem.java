@@ -138,15 +138,23 @@ public class BattleSystem {
 				//May need to be changed, 
 				//regenerates HP based on Spell and Intellect
 
-				int healingAmount = chosenSpell.getHealer()*wCaster.getIntellect();
+				int healingAmount = chosenSpell.getHealer()*wCaster.getAttunement();
 
 				if(wCaster.getHP() + healingAmount > wCaster.getHP())
 				{
 					healingAmount = wCaster.GetMaxHP() - wCaster.getHP();
 					wCaster.RestoreAllHeatlh();
+					wCaster.setAttunement(wCaster.getAttunement() - 20);
+					if (wCaster.getAttunement() - 20 < 1){
+						wCaster.Attunement(0);
+					}
 				}
 				else{
 					wCaster.setHP(wCaster.getHP() + healingAmount);
+					wCaster.setAttunement(wCaster.getAttunement() - 20);
+					if (wCaster.getAttunement() - 20 < 1){
+						wCaster.Attunement(0);
+					}
 				}
 
 				System.out.println(wCaster.getName() + " healed for " + healingAmount + " health" );
