@@ -11,7 +11,7 @@ public class GrandWizardLogan extends abstractWizard {
 		}
 		
 		@Override
-		public Spell chooseSpell() {
+		public Spell chooseSpell(abstractWizard enemy) {
 			int spellerama;
 			
 			if(this.getHP() < 300){
