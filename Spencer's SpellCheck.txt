@@ -1,0 +1,17 @@
+
+ArrayList<Spell> validSpells = new ArrayList<Spell>(cloneList(SpellBook));
+
+public static void checkSpellBook (){ 
+	for(int x = 0; x < getSpellBook.size) {
+	  if (getSpellBook.get(x) == validSpells.get(x)){
+	  System.out.println("A Wizard tried to make thier own secret spell")
+	  System.out.println("Why do you do dis ya cheater?")
+	 }
+      }
+  }
+public static List<Spell> cloneList(List<Spell> list) {
+  //Makes A clone of SpellBook
+    List<Spell> clone = new ArrayList<Spell>(list.size());
+    for(Spell item: list) clone.add(item.clone());
+    return clone;
+}
