@@ -144,7 +144,7 @@ public class BattleSystem {
 				{
 					healingAmount = wCaster.GetMaxHP() - wCaster.getHP();
 					wCaster.RestoreAllHeatlh();
-					wCaster.setAttunement(wCaster.getAttunement() - healingAmount + 20);
+					wCaster.setAttunement(wCaster.getAttunement() - healingAmount);
 					
 					if (wCaster.getAttunement() - 20 < 1){
 						wCaster.setAttunement(0);

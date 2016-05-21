@@ -37,7 +37,7 @@ public class WizardRunner {
    //spellBook.add();
    
    // Just using 250 for equal balance testing
-   abstractWizard Hairy = new randomWizard("Hairy", spellBook);
+   abstractWizard Hairy = new NastyHealer("Rex", spellBook);
    abstractWizard Bob = new randomWizard("Bob", spellBook);
    
    BattleSystem b = new BattleSystem();

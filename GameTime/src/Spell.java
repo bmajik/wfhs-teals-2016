@@ -6,6 +6,11 @@ public class Spell {
 	//Basic damaging spell 	
 	public Spell(String name,int power, long coolDown)
 	{
+		if (power > 40 && coolDown < 3000 || power > 40 || coolDown < 1000 || power > 35 && coolDown < 3000 || power > 25 && coolDown < 1000){
+		System.out.println("A wizard has made thier own overpowered spell for attacking");
+		System.out.println("You got caught, hehe");
+		System.exit(1);
+		}
 		this.spellName = name;
 		this.power = power;
 		this.coolDown = coolDown;
@@ -14,6 +19,11 @@ public class Spell {
 	//assumes spell is disarm
 	public Spell(String name,boolean status, long coolDown)
 	{
+		if (coolDown < 1000){
+		System.out.println("A wizard tried to modify the Disarm Spell");
+		System.out.println("but you got caught, hahahahahhaahahahahhaahahahhaahah");
+		System.exit(1);
+		}
 		this.spellName = name;
 		this.disarm = true;
 		this.coolDown = coolDown;
@@ -24,6 +34,11 @@ public class Spell {
 	//boolean hitSelf only exists to separate it from a basic damage spell
 	public Spell(String name,int healPower, boolean hitSelf, long coolDown)
 	{
+		if (healPower > 20 && coolDown < 1000 || healPower > 20 || coolDown < 1000){
+		System.out.println("A wizard has made thier own overpowered spell for healing");
+		System.out.println("You got caught, hehe");
+		System.exit(1);
+		}
 		this.spellName = name;
 		this.selfTargeting = true;		
 		this.Healer = healPower;

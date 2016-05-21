@@ -239,6 +239,7 @@ public class UserInterface {
 			wizard2.append("\n     ||  .'         :");
 			wizard2.append("\n     \\\\.'_         _:\\");
 			wizard2.append("\n      \\\\__`-------'   `.");
+			
 		}	
 		else{
 		wizard2.setText(name + 
