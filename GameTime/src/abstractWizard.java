@@ -148,7 +148,9 @@ public abstract class abstractWizard{
 		}
 		return true;
 	}
-	
-	public abstract Spell chooseSpell();
+	public Spell chooseSpell(abstractWizard enemy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
