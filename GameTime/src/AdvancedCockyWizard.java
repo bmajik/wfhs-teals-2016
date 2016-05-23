@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class AdvancedCockyWizard extends abstractWizard{
  public AdvancedCockyWizard(String name, ArrayList<Spell> spellBook) {
- super(name, 400, 300, 300, spellBook);
+ super(name, 400, 300, 2, spellBook);
  }
  /*
  ***CHEAT SHEET:
