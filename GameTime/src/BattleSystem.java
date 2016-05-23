@@ -113,7 +113,7 @@ public class BattleSystem {
 			return wCaster.getName() + " is disarmed, they cannot cast a spell";
 		}
 
-		Spell chosenSpell = wCaster.chooseSpell();
+		Spell chosenSpell = wCaster.chooseSpell(wRecieve);
 
 		if (chosenSpell == null) {
 			chosenSpell = new Spell("(null)", 0, 0);
@@ -136,17 +136,26 @@ public class BattleSystem {
 
 			else{
 				//May need to be changed, 
-				//regenerates HP based on Spell and Intellect
+				//regenerates HP based on Spell and Attunement
 
-				int healingAmount = chosenSpell.getHealer()*wCaster.getIntellect();
+				int healingAmount = chosenSpell.getHealer()*wCaster.getAttunement();
 
 				if(wCaster.getHP() + healingAmount > wCaster.getHP())
 				{
 					healingAmount = wCaster.GetMaxHP() - wCaster.getHP();
 					wCaster.RestoreAllHeatlh();
+					wCaster.setAttunement(wCaster.getAttunement() - healingAmount);
+					
+					if (wCaster.getAttunement() - 20 < 1){
+						wCaster.setAttunement(0);
+					}
 				}
 				else{
 					wCaster.setHP(wCaster.getHP() + healingAmount);
+					wCaster.setAttunement(wCaster.getAttunement() - 20);
+					if (wCaster.getAttunement() - 20 < 1){
+						wCaster.setAttunement(0);
+					}
 				}
 
 				System.out.println(wCaster.getName() + " healed for " + healingAmount + " health" );

@@ -13,7 +13,7 @@ public class randomWizard extends abstractWizard {
 		int RemainingStat = 700;
 		
 		// but you can change your stats later...
-		// I choose my stats randmoly...
+		// I choose my stats randomly...
 		int HP = (int)(Math.random() * RemainingStat);
 		RemainingStat -= HP;
 		HP += 100;
@@ -24,7 +24,6 @@ public class randomWizard extends abstractWizard {
 		
 		int Attunement = RemainingStat;
 		Attunement += 100;
-		
 		this.setHP(HP);
 		this.setMaxHP(HP);
 					
@@ -34,7 +33,7 @@ public class randomWizard extends abstractWizard {
 	}
 	
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstractWizard enemy) {
 		// i always choose a random spell
 		int spellBookSize = this.getSpellBook().size();
 		return this.getSpellBook().get((int)(Math.random() * spellBookSize));

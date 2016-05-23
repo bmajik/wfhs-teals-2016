@@ -37,10 +37,13 @@ public class WizardRunner {
    //spellBook.add();
    
    // Just using 250 for equal balance testing
-   abstractWizard Spencer= new CoopDestroyer("Rex", spellBook);
-   abstractWizard w2 = new VetterWizard(spellBook);
+   abstractWizard Hairy = new randomWizard("Rex", spellBook);
+   abstractWizard Bob = new randomWizard("Bob", spellBook);
    
    BattleSystem b = new BattleSystem();
-   b.WizardBattleSystem(Spencer, w2);
+   b.WizardBattleSystem(Hairy, Bob);
+   
+   
+  
  }
 }

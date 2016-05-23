@@ -9,9 +9,9 @@ public class VetterWizard extends abstractWizard{
 	}
 
 	@Override
-	public Spell chooseSpell() {
+	public Spell chooseSpell(abstractWizard enemy) {
 		
-		Spell c = null;																											setWarded(true);
+		Spell c = null;	
 		if(getHP()/GetMaxHP() <.25) {
 			c = getSpellBook().get(10);
 		}

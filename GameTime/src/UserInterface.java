@@ -43,7 +43,13 @@ public class UserInterface {
 		updateLeftHealthText(leftWizard.getHP());
 		updateRightHealth(rightWizard.getHP());
 		updateRightHealthText(rightWizard.getHP());
+		updateAttunement(leftWizard.getAttunement(), rightWizard.getAttunement());
 		
+		
+	}
+	public void updateAttunement (int player1, int player2){
+		leftAttunementText.setText("Attunement:" + player1);
+		rightAttunementText.setText("Attunement:" + player2);
 	}
 	public void updateLeftHealth(int currentHealthPercent){		
 		leftHealth.setValue(currentHealthPercent);
@@ -233,6 +239,7 @@ public class UserInterface {
 			wizard2.append("\n     ||  .'         :");
 			wizard2.append("\n     \\\\.'_         _:\\");
 			wizard2.append("\n      \\\\__`-------'   `.");
+			
 		}	
 		else{
 		wizard2.setText(name + 
