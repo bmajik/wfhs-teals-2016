@@ -33,15 +33,11 @@ public class WizardRunner {
    spellBook.add(healLoseAttunement);
    spellBook.add(stopIt);
    
-   //real spell list
-   //spellBook.add();
-   
-   // Just using 250 for equal balance testing
-   abstractWizard Hairy = new AdvancedCockyWizard("Rex", spellBook);
-   abstractWizard Bob = new AdvancedCockyWizard("Bob", spellBook);
+   abstractWizard w1 = new AdvancedCockyWizard("Advanced Cocky", spellBook);
+   abstractWizard w2 = new randomWizard("Random Right", spellBook);
    
    BattleSystem b = new BattleSystem();
-   b.WizardBattleSystem(Hairy, Bob);
+   b.WizardBattleSystem(w1, w2);
    
    
   
