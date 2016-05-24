@@ -33,8 +33,8 @@ public class WizardRunner {
    spellBook.add(healLoseAttunement);
    spellBook.add(stopIt);
    
-   abstractWizard w1 = new AdvancedCockyWizard("Advanced Cocky", spellBook);
-   abstractWizard w2 = new randomWizard("Random Right", spellBook);
+   abstractWizard w1 = new GrandWizardLogan("Logan",spellBook);
+   abstractWizard w2 = new samiraWizard(spellBook);
    
    BattleSystem b = new BattleSystem();
    b.WizardBattleSystem(w1, w2);
