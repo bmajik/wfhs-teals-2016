@@ -7,14 +7,28 @@ public class me extends abstractWizard {
 	@Override
 	public Spell chooseSpell(abstractWizard enemy) {
 		// Use opponents logic against them or random spell
+		Spell chosenSpell;
 		double five = Math.random();
 		if (five < .5){
 			
-			return this.getSpellBook().get((int)(Math.random() * this.getSpellBook().size()));	
+			chosenSpell = this.getSpellBook().get((int)(Math.random() * this.getSpellBook().size()));	
 		}
 		else{
-			return enemy.chooseSpell(enemy);
+			chosenSpell = enemy.chooseSpell(enemy);
 		}
+		while (chosenSpell.getHealer() != 0){
+			if ((this.getHP() > this.GetMaxHP()-100)){
+				chosenSpell = this.getSpellBook().get((int)(Math.random() * this.getSpellBook().size()));
+			}
+			else if  (this.getAttunement() < 0){
+				while (chosenSpell.getHealer() != 0){
+					chosenSpell = this.getSpellBook().get((int)(Math.random() * this.getSpellBook().size()));
+				}
+				
+			}
+			
+		}
+		return chosenSpell;
 		
 	}
 }
